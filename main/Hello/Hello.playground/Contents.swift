@@ -24,25 +24,23 @@ import UIKit
 import RxSwift
 
 
+let disposeBag: DisposeBag = .init()
 
+Observable.just("Hello, RxSwift")
+  .subscribe { print($0) }
+  .disposed(by: disposeBag)
 
+var a = 1
+var b = 2
 
+a + b
+a = 12
 
+let c: BehaviorSubject = .init(value: 1)
+let d: BehaviorSubject = .init(value: 2)
 
+Observable.combineLatest(c, d) { $0 + $1 }
+  .subscribe(onNext: {print($0)})
+  .disposed(by: disposeBag)
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
+c.onNext(12)
