@@ -28,7 +28,44 @@ import RxSwift
  */
 
 
+let subscription1 = Observable.from([1, 2, 3])
+    .subscribe(onNext: { elem in
+        print("Next", elem)
+    }, onError: { error in
+        print("Error", error.localizedDescription)
+    }, onCompleted: {
+        print("Completed")
+    }, onDisposed: {
+        print("Disposed")
+    })
 
+subscription1.dispose()
+
+var disposeBag = DisposeBag()
+
+Observable.from([1, 2, 3])
+    .subscribe {
+        print($0)
+    }
+    .disposed(by: disposeBag)
+
+disposeBag = DisposeBag()
+
+
+let subscription2 = Observable<Int>.interval(.seconds(1), scheduler: MainScheduler.instance)
+    .subscribe(onNext: { elem in
+        print("Next", elem)
+    }, onError: { error in
+        print("Error", error.localizedDescription)
+    }, onCompleted: {
+        print("Completed")
+    }, onDisposed: {
+        print("Disposed")
+    })
+
+DispatchQueue.main.asyncAfter(deadline: .now() + 3) {
+    subscription2.dispose()
+}
 
 
 

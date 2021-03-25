@@ -37,7 +37,6 @@ Observable<Int>.create { (observer) -> Disposable in
 }
 
 
-
 Observable.from([1, 2, 3])
 
 
