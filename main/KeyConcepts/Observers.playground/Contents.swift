@@ -28,12 +28,12 @@ import RxSwift
  */
 
 Observable<Int>.create { (observer) -> Disposable in
-   observer.on(.next(0))
-   observer.onNext(1)
-   
-   observer.onCompleted()
-   
-   return Disposables.create()
+  observer.on(.next(0))
+  observer.onNext(1)
+  
+  observer.onCompleted()
+  
+  return Disposables.create()
 }
 
 
